@@ -12,15 +12,16 @@
     "vue": "^3.2.36",
     "vue-router": "^4.0.15",
     "vue-yup-form-validation": "0.0.19",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "vite": "^2.9.9",
+    "@vitejs/plugin-vue": "^2.3.3"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
-    "@vitejs/plugin-vue": "^2.3.3",
+    
     "@vue/eslint-config-prettier": "^7.0.0",
     "eslint": "^8.5.0",
     "eslint-plugin-vue": "^8.2.0",
-    "prettier": "^2.5.1",
-    "vite": "^2.9.9"
+    "prettier": "^2.5.1" 
   }
 }
