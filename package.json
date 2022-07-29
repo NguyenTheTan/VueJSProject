@@ -1,6 +1,6 @@
 {
   "name": "me-shop",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -8,20 +8,20 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@vitejs/plugin-vue": "^2.3.3",
+    "pkg": "^5.8.0",
     "vee-validate": "^4.5.11",
+    "vite": "^2.9.9",
     "vue": "^3.2.36",
     "vue-router": "^4.0.15",
     "vue-yup-form-validation": "0.0.19",
-    "yup": "^0.32.11",
-    "vite": "^2.9.9",
-    "@vitejs/plugin-vue": "^2.3.3"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
-    
     "@vue/eslint-config-prettier": "^7.0.0",
     "eslint": "^8.5.0",
     "eslint-plugin-vue": "^8.2.0",
-    "prettier": "^2.5.1" 
+    "prettier": "^2.5.1"
   }
 }
