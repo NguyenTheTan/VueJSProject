@@ -1,6 +1,6 @@
 {
   "name": "me-shop",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -12,10 +12,8 @@
     "pkg": "^5.8.0",
     "vee-validate": "^4.5.11",
     "vite": "^2.9.9",
-    "vue": "^2.6.10",
-    "vue-router": "^4.0.15",
-    "vue-yup-form-validation": "0.0.19",
-    "yup": "^0.32.11"
+    "vue": "^3.2.27",
+    "vue-router": "^4.0.15"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",

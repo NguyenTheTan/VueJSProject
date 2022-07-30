@@ -11,26 +11,20 @@
                     Đăng ký
                   </p>
 
-                  <Form
-                    v-on:submit="register"
-                    class="mx-1 mx-md-4"
-                    :validation-schema="schema"
-                    v-slot="{ errors }"
-                  >
+                  <form @submit.prevent="checkForm" class="mx-1 mx-md-4">
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <Field
-                          v-model="formdata.username"
+                        <input
+                          v-model="formData.username"
                           style="border-radius: 20px"
                           type="text"
                           id="form3Example1c"
                           class="form-control"
                           placeholder="Tên đăng nhập"
                           name="username"
-                          :class="{ 'is-invalid': errors.username }"
                         />
-                        <div class="invalid-feedback">
+                        <div class="text-danger">
                           {{ errors.username }}
                         </div>
                       </div>
@@ -42,8 +36,8 @@
                         style="position: relative"
                         class="form-outline flex-fill mb-0"
                       >
-                        <Field
-                          v-model="formdata.password"
+                        <input
+                          v-model="formData.password"
                           v-if="showPassword"
                           style="border-radius: 20px"
                           type="text"
@@ -51,10 +45,9 @@
                           class="form-control"
                           placeholder="Mật khẩu"
                           name="password"
-                          :class="{ 'is-invalid': errors.password }"
                         />
-                        <Field
-                          v-model="formdata.password"
+                        <input
+                          v-model="formData.password"
                           v-else="showPassword"
                           style="border-radius: 20px"
                           type="password"
@@ -62,7 +55,6 @@
                           class="form-control"
                           placeholder="Mật khẩu"
                           name="password"
-                          :class="{ 'is-invalid': errors.password }"
                         />
                         <span
                           @click="pass"
@@ -81,7 +73,7 @@
                             }"
                           ></i
                         ></span>
-                        <div class="invalid-feedback">
+                        <div class="text-danger">
                           {{ errors.password }}
                         </div>
                       </div>
@@ -93,25 +85,23 @@
                         style="position: relative"
                         class="form-outline flex-fill mb-0"
                       >
-                        <Field
-                          v-model="formdata.rePassword"
+                        <input
+                          v-model="formData.rePassword"
                           v-if="showRePassword"
                           style="border-radius: 20px"
                           type="text"
                           class="form-control"
                           placeholder="Nhập lại mật khẩu"
                           name="repeatPassWord"
-                          :class="{ 'is-invalid': errors.repeatPassWord }"
                         />
-                        <Field
-                          v-model="formdata.rePassword"
+                        <input
+                          v-model="formData.rePassword"
                           v-else="showRePassword"
                           style="border-radius: 20px"
                           type="password"
                           class="form-control"
                           placeholder="Nhập lại mật khẩu"
                           name="repeatPassWord"
-                          :class="{ 'is-invalid': errors.repeatPassWord }"
                         />
                         <span
                           @click="rePass"
@@ -130,7 +120,7 @@
                             }"
                           ></i
                         ></span>
-                        <div class="invalid-feedback">
+                        <div class="text-danger">
                           {{ errors.repeatPassWord }}
                         </div>
                       </div>
@@ -139,17 +129,16 @@
                     <div class="d-flex flex-row align-items-center mb-2">
                       <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <Field
-                          v-model="formdata.email"
+                        <input
+                          v-model="formData.email"
                           style="border-radius: 20px"
-                          type="email"
+                          type="text"
                           id="form3Example3c"
                           class="form-control"
                           placeholder="Email"
                           name="email"
-                          :class="{ 'is-invalid': errors.email }"
                         />
-                        <div class="invalid-feedback">{{ errors.email }}</div>
+                        <div class="text-danger">{{ errors.email }}</div>
                       </div>
                     </div>
 
@@ -191,7 +180,7 @@
                         Đăng ký
                       </button>
                     </div>
-                  </Form>
+                  </form>
                 </div>
                 <div
                   class="col-md-10 col-lg-6 col-xl-7 d-flex justify-content-center align-items-center order-1 order-lg-2"
@@ -212,38 +201,32 @@
 </template>
 
 <script>
-import { Form, Field } from "vee-validate";
-import * as Yup from "yup";
 const port = import.meta.env.VITE_HOST;
 
 export default {
-  components: {
-    Form,
-    Field,
-  },
   data() {
-    const schema = Yup.object().shape({
-      username: Yup.string()
-        .required("Yêu cầu bắt buộc")
-        .min(3, "Yêu cầu tên đăng nhập phải nhiều hơn 3 ký tự")
-        .max(20, "Yêu cầu tên đăng nhập phải ít hơn 20 ký tự"),
-      email: Yup.string()
-        .required("Yêu cầu bắt buộc")
-        .email("Yêu cầu phải là Email"),
-      password: Yup.string()
-        .required("Yêu cầu bắt buộc")
-        .min(6, "Mật khẩu phải nhiều hơn 6 ký tự"),
-      repeatPassWord: Yup.string()
-        .required("Yêu cầu bắt buộc")
-        .oneOf([Yup.ref("password"), ""], "Mật khẩu không trùng khớp"),
-    });
+    // const schema = Yup.object().shape({
+    //   username: Yup.string()
+    //     .required("Yêu cầu bắt buộc")
+    //     .min(3, "Yêu cầu tên đăng nhập phải nhiều hơn 3 ký tự")
+    //     .max(20, "Yêu cầu tên đăng nhập phải ít hơn 20 ký tự"),
+    //   email: Yup.string()
+    //     .required("Yêu cầu bắt buộc")
+    //     .email("Yêu cầu phải là Email"),
+    //   password: Yup.string()
+    //     .required("Yêu cầu bắt buộc")
+    //     .min(6, "Mật khẩu phải nhiều hơn 6 ký tự"),
+    //   repeatPassWord: Yup.string()
+    //     .required("Yêu cầu bắt buộc")
+    //     .oneOf([Yup.ref("password"), ""], "Mật khẩu không trùng khớp"),
+    // });
     return {
-      schema,
       showPassword: false,
       showRePassword: false,
-      formdata: {},
+      formData: {},
       error: "",
       checked: false,
+      errors: {},
     };
   },
   computed: {
@@ -261,10 +244,46 @@ export default {
     rePass() {
       this.showRePassword = !this.showRePassword;
     },
+    validEmail(email) {
+      var re =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    },
+    checkForm() {
+      this.errors = {};
+      if (!this.formData.username) {
+        this.errors.username = "Yêu cầu bắt buộc";
+      } else if (this.formData.username.length < 3) {
+        this.errors.username = "Yêu cầu tên đăng nhập phải nhiều hơn 3 ký tự";
+      } else if (this.formData.username.length > 20) {
+        this.errors.username = "Yêu cầu tên đăng nhập phải ít hơn 20 ký tự";
+      }
+      if (!this.formData.email) {
+        this.errors.email = "Yêu cầu bắt buộc";
+      } else if (!this.validEmail(this.formData.email)) {
+        this.errors.email = "Yêu cầu phải là Email";
+      }
+      if (!this.formData.password) {
+        this.errors.password = "Yêu cầu bắt buộc";
+      } else if (this.formData.password.length < 6) {
+        this.errors.password = "Mật khẩu phải từ 6 ký tự trở lên";
+      } else if (this.formData.password.length > 20) {
+        this.errors.password = "Mật khẩu ít hơn 20 ký tự";
+      }
+      if (!this.formData.rePassword) {
+        this.errors.repeatPassWord = "Yêu cầu bắt buộc";
+      } else if (this.formData.password !== this.formData.rePassword) {
+        this.errors.repeatPassWord = "Mật khẩu không trùng khớp";
+      }
+      const check = Object.keys(this.errors);
+      if (check.length === 0) {
+        this.register();
+      }
+    },
     async register() {
       try {
         // replace by async/await
-        const data = this.formdata;
+        const data = this.formData;
         const res = await fetch(`${port}/signup`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },

@@ -11,21 +11,18 @@
           <div
             class="d-flex justify-content-center align-items-center h-custom-2 ms-xl-4 pt-xl-0 mt-xl-n5"
           >
-            <Form
+            <form
               action=""
               style="width: 23rem"
-              @submit="signIn"
+              @submit.prevent="checkForm"
               method="post"
-              v-slot="{ errors }"
-              :validation-schema="schema"
             >
               <div class="d-flex">
                 <h3 class="fw-bold m-auto pb-3">Đăng nhập</h3>
               </div>
 
               <div class="form-outline mb-4">
-                <Field
-                  :class="{ 'is-invalid': errors.username }"
+                <input
                   v-model="formSignIn.username"
                   style="border-radius: 20px"
                   type="text"
@@ -34,7 +31,7 @@
                   class="form-control form-control-lg mb-2"
                   placeholder="Tên đăng nhập"
                 />
-                <div class="invalid-feedback">
+                <div class="text-danger">
                   {{ errors.username }}
                 </div>
               </div>
@@ -43,7 +40,7 @@
                 class="form-outline mb-2 flex-fill"
                 style="position: relative"
               >
-                <Field
+                <input
                   v-model="formSignIn.password"
                   v-if="showPassword"
                   style="border-radius: 20px"
@@ -52,11 +49,9 @@
                   class="form-control form-control-lg mb-2"
                   placeholder="Mật khẩu"
                   name="password"
-                  :class="{ 'is-invalid': errors.password }"
                 />
-                <Field
+                <input
                   v-else="showPassword"
-                  :class="{ 'is-invalid': errors.password }"
                   v-model="formSignIn.password"
                   style="border-radius: 20px"
                   type="password"
@@ -83,7 +78,7 @@
                     }"
                   ></i
                 ></span>
-                <div class="invalid-feedback">
+                <div class="text-danger">
                   {{ errors.password }}
                 </div>
               </div>
@@ -113,7 +108,7 @@
                   <router-link to="/signup">Đăng ký</router-link>
                 </p>
               </div>
-            </Form>
+            </form>
           </div>
         </div>
         <div class="col-sm-6 px-0 d-none d-sm-block">
@@ -130,31 +125,24 @@
 </template>
 
 <script>
-import { Form, Field } from "vee-validate";
-import * as Yup from "yup";
 const port = import.meta.env.VITE_HOST;
 
 export default {
-  components: {
-    Form,
-    Field,
-  },
-
   data() {
-    const schema = Yup.object().shape({
-      username: Yup.string()
-        .required("Yêu cầu bắt buộc")
-        .min(3, "Yêu cầu tên đăng nhập phải nhiều hơn 3 ký tự")
-        .max(20, "Yêu cầu tên đăng nhập phải ít hơn 20 ký tự"),
-      password: Yup.string()
-        .required("Yêu cầu bắt buộc")
-        .min(6, "Mật khẩu phải nhiều hơn 6 ký tự"),
-    });
+    // const schema = Yup.object().shape({
+    //   username: Yup.string()
+    //     .required("Yêu cầu bắt buộc")
+    //     .min(3, "Yêu cầu tên đăng nhập phải nhiều hơn 3 ký tự")
+    //     .max(20, "Yêu cầu tên đăng nhập phải ít hơn 20 ký tự"),
+    //   password: Yup.string()
+    //     .required("Yêu cầu bắt buộc")
+    //     .min(6, "Mật khẩu phải nhiều hơn 6 ký tự"),
+    // });
     return {
-      schema,
       showPassword: false,
       formSignIn: {},
       error: "",
+      errors: {},
     };
   },
   computed: {
@@ -165,6 +153,27 @@ export default {
   methods: {
     pass() {
       this.showPassword = !this.showPassword;
+    },
+    checkForm() {
+      this.errors = {};
+      if (!this.formSignIn.username) {
+        this.errors.username = "Yêu cầu bắt buộc";
+      } else if (this.formSignIn.username.length < 3) {
+        this.errors.username = "Yêu cầu tên đăng nhập phải nhiều hơn 3 ký tự";
+      } else if (this.formSignIn.username.length > 20) {
+        this.errors.username = "Yêu cầu tên đăng nhập phải ít hơn 20 ký tự";
+      }
+      if (!this.formSignIn.password) {
+        this.errors.password = "Yêu cầu bắt buộc";
+      } else if (this.formSignIn.password.length < 6) {
+        this.errors.password = "Mật khẩu phải từ 6 ký tự trở lên";
+      } else if (this.formSignIn.password.length > 20) {
+        this.errors.password = "Mật khẩu ít hơn 20 ký tự";
+      }
+      const check = Object.keys(this.errors);
+      if (check.length === 0) {
+        this.signIn();
+      }
     },
     async signIn() {
       // this.validateInput();

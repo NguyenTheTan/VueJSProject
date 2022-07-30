@@ -323,9 +323,7 @@ export default {
           }
           if (!this.error.phoneNum) {
             const regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
-            console.log(this.formCheckout.phoneNum);
             const result = regex.test(this.formCheckout.phoneNum);
-            console.log(result);
             if (result == false) {
               this.error.phoneNum = "Yêu cầu phải là số điện thoại";
             }
@@ -350,9 +348,8 @@ export default {
           }
           if (!this.error.phoneNum) {
             const regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
-            console.log(this.formCheckout.phoneNum);
+
             const result = regex.test(this.formCheckout.phoneNum);
-            console.log(result);
             if (result == false) {
               this.error.phoneNum = "Yêu cầu phải là số điện thoại";
             }
