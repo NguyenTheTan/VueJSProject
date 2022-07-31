@@ -65,11 +65,7 @@
                   ></a>
                 </div>
                 <div class="col-lg-5 d-none d-lg-flex animated zoomIn">
-                  <img
-                    class="img-fluid"
-                    src="../assets/img/book 2.png"
-                    alt=""
-                  />
+                  <img class="img-fluid" src="../assets/img/book2.png" alt="" />
                 </div>
               </div>
             </div>
