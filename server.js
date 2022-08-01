@@ -9,7 +9,7 @@ app.use("/", serveStatic(path.join(__dirname, "/dist")));
 
 // this * route is to serve project on different page routes except root `/`
 app.get("/*", function (req, res) {
-  res.render(path.join(__dirname + "/dist/index.html"));
+  res.render(path.join(__dirname, "/dist/index.html"));
 });
 
 const port = process.env.PORT || 3000;
