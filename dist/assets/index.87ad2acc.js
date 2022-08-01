@@ -3754,20 +3754,19 @@ function Nc(e) {
         e("html, body").animate({ scrollTop: 0 }, 1500, "easeInOutExpo"), !1
       );
     }),
-    // e('[data-toggle="counter-up"]').counterUp({ delay: 10, time: 2e3 }),
-    // e(".date").datetimepicker({ format: "L" }),
-    // e(".time").datetimepicker({ format: "LT" }),
-    e(".testimonial-carousel");
-  // .owlCarousel({
-  //   autoplay: !0,
-  //   smartSpeed: 1e3,
-  //   center: !0,
-  //   margin: 25,
-  //   dots: !0,
-  //   loop: !0,
-  //   nav: !1,
-  //   responsive: { 0: { items: 1 }, 768: { items: 2 }, 992: { items: 3 } },
-  // });
+    e('[data-toggle="counter-up"]').counterUp({ delay: 10, time: 2e3 }),
+    e(".date").datetimepicker({ format: "L" }),
+    e(".time").datetimepicker({ format: "LT" }),
+    e(".testimonial-carousel").owlCarousel({
+      autoplay: !0,
+      smartSpeed: 1e3,
+      center: !0,
+      margin: 25,
+      dots: !0,
+      loop: !0,
+      nav: !1,
+      responsive: { 0: { items: 1 }, 768: { items: 2 }, 992: { items: 3 } },
+    });
 })(jQuery);
 /*!
  * vue-router v4.1.3
