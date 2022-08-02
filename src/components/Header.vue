@@ -77,8 +77,8 @@
         <router-link to="/" class="nav-item nav-link active fw-bold"
           >Trang chủ</router-link
         >
-        <a href="about.html" class="nav-item nav-link fw-bold">About</a>
-        <a href="service.html" class="nav-item nav-link fw-bold">Services</a>
+        <a href="#" class="nav-item nav-link fw-bold">About</a>
+        <a href="#" class="nav-item nav-link fw-bold">Services</a>
         <div class="nav-item dropdown">
           <a
             href="#"
@@ -87,12 +87,10 @@
             >Pages</a
           >
           <div class="dropdown-menu fade-up m-0">
-            <a href="booking.html" class="dropdown-item fw-bold">Booking</a>
-            <a href="team.html" class="dropdown-item fw-bold">Technicians</a>
-            <a href="testimonial.html" class="dropdown-item fw-bold"
-              >Testimonial</a
-            >
-            <a href="404.html" class="dropdown-item fw-bold">404 Page</a>
+            <a href="#" class="dropdown-item fw-bold">Booking</a>
+            <a href="#" class="dropdown-item fw-bold">Technicians</a>
+            <a href="#" class="dropdown-item fw-bold">Testimonial</a>
+            <a href="#" class="dropdown-item fw-bold">404 Page</a>
           </div>
         </div>
         <!-- <a href="#" class="nav-item nav-link">
