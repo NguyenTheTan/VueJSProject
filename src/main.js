@@ -1,5 +1,9 @@
 import { createApp } from "vue";
 import "./assets/style.css";
+import "./css/dselect.css";
+import "./lib/animate/animate.min.css";
+import "./lib/owlcarousel/assets/owl.carousel.min.css";
+import "./lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css";
 import "./assets/handlecss.js";
 // import "./lib/wow/wow.min.js";
 // import "./lib/easing/easing.min.js";
