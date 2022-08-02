@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 import "./assets/style.css";
-import "./assets/handlecss.js";
+// import "./assets/handlecss.js";
 import "./lib/wow/wow.min.js";
 import "./lib/easing/easing.min.js";
 import "./lib/waypoints/waypoints.min.js";
