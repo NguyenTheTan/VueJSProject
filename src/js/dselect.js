@@ -20,21 +20,21 @@ function dselectUpdate(button, classElement, classToggler) {
     input.value = "";
   }
 }
-// function dselectRemoveTag(button, classElement, classToggler) {
-//   const value = button.parentNode.dataset.dselectValue;
-//   const target = button.closest(`.${classElement}`).previousElementSibling;
-//   const toggler =
-//     target.nextElementSibling.getElementsByClassName(classToggler)[0];
-//   const input = target.nextElementSibling.querySelector("input");
-//   Array.from(target.options).filter(
-//     (option) => option.value === value
-//   )[0].selected = false;
-//   target.dispatchEvent(new Event("change"));
-//   toggler.click();
-//   if (input) {
-//     input.value = "";
-//   }
-// }
+function dselectRemoveTag(button, classElement, classToggler) {
+  const value = button.parentNode.dataset.dselectValue;
+  const target = button.closest(`.${classElement}`).previousElementSibling;
+  const toggler =
+    target.nextElementSibling.getElementsByClassName(classToggler)[0];
+  const input = target.nextElementSibling.querySelector("input");
+  Array.from(target.options).filter(
+    (option) => option.value === value
+  )[0].selected = false;
+  target.dispatchEvent(new Event("change"));
+  toggler.click();
+  if (input) {
+    input.value = "";
+  }
+}
 function dselectSearch(event, input, classElement, classToggler, creatable) {
   const filterValue = input.value.toLowerCase().trim();
   const itemsContainer = input.nextElementSibling;
@@ -94,9 +94,9 @@ function dselect(el, option = {}) {
   el.style.display = "none";
   const classElement = "dselect-wrapper";
   const classNoResults = "dselect-no-results";
-  // const classTag = "dselect-tag";
-  // const classTagRemove = "dselect-tag-remove";
-  // const classPlaceholder = "dselect-placeholder";
+  const classTag = "dselect-tag";
+  const classTagRemove = "dselect-tag-remove";
+  const classPlaceholder = "dselect-placeholder";
   const classClearBtn = "dselect-clear";
   const classTogglerClearable = "dselect-clearable";
   const defaultSearch = false;
@@ -123,75 +123,75 @@ function dselect(el, option = {}) {
     const value = el.getAttribute(attribute);
     return value.toLowerCase() === "true";
   }
-  // function removePrev() {
-  //   if (
-  //     el.nextElementSibling &&
-  //     el.nextElementSibling.classList &&
-  //     el.nextElementSibling.classList.contains(classElement)
-  //   ) {
-  //     el.nextElementSibling.remove();
-  //   }
-  // }
-  // function isPlaceholder(option2) {
-  //   return option2.getAttribute("value") === "";
-  // }
-  // function selectedTag(options, multiple) {
-  //   if (multiple) {
-  //     const selectedOptions = Array.from(options).filter(
-  //       (option2) => option2.selected && !isPlaceholder(option2)
-  //     );
-  //     const placeholderOption = Array.from(options).filter((option2) =>
-  //       isPlaceholder(option2)
-  //     );
-  //     let tag = [];
-  //     if (selectedOptions.length === 0) {
-  //       const text = placeholderOption.length
-  //         ? placeholderOption[0].textContent
-  //         : "&nbsp;";
-  //       tag.push(`<span class="${classPlaceholder}">${text}</span>`);
-  //     } else {
-  //       for (const option2 of selectedOptions) {
-  //         tag.push(`
-  //           <div class="${classTag}" data-dselect-value="${option2.value}">
-  //             ${option2.text}
-  //             <svg onclick="dselectRemoveTag(this, '${classElement}', '${classToggler}')" class="${classTagRemove}" width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg>
-  //           </div>
-  //         `);
-  //       }
-  //     }
-  //     return tag.join("");
-  //   } else {
-  //     const selectedOption = options[options.selectedIndex];
-  //     return isPlaceholder(selectedOption)
-  //       ? `<span class="${classPlaceholder}">${selectedOption.innerHTML}</span>`
-  //       : selectedOption.innerHTML;
-  //   }
-  // }
-  // function selectedText(options) {
-  //   const selectedOption = options[options.selectedIndex];
-  //   return isPlaceholder(selectedOption) ? "" : selectedOption.textContent;
-  // }
-  // function itemTags(options) {
-  //   let items = [];
-  //   for (const option2 of options) {
-  //     if (option2.tagName === "OPTGROUP") {
-  //       items.push(
-  //         `<h6 class="dropdown-header">${option2.getAttribute("label")}</h6>`
-  //       );
-  //     } else {
-  //       const hidden = isPlaceholder(option2) ? " hidden" : "";
-  //       const active = option2.selected ? " active" : "";
-  //       const disabled = el.multiple && option2.selected ? " disabled" : "";
-  //       const value = option2.value;
-  //       const text = option2.textContent;
-  //       items.push(
-  //         `<button${hidden} class="dropdown-item${active}" data-dselect-value="${value}" type="button" onclick="dselectUpdate(this, '${classElement}', '${classToggler}')"${disabled}>${text}</button>`
-  //       );
-  //     }
-  //   }
-  //   items = items.join("");
-  //   return items;
-  // }
+  function removePrev() {
+    if (
+      el.nextElementSibling &&
+      el.nextElementSibling.classList &&
+      el.nextElementSibling.classList.contains(classElement)
+    ) {
+      el.nextElementSibling.remove();
+    }
+  }
+  function isPlaceholder(option2) {
+    return option2.getAttribute("value") === "";
+  }
+  function selectedTag(options, multiple) {
+    if (multiple) {
+      const selectedOptions = Array.from(options).filter(
+        (option2) => option2.selected && !isPlaceholder(option2)
+      );
+      const placeholderOption = Array.from(options).filter((option2) =>
+        isPlaceholder(option2)
+      );
+      let tag = [];
+      if (selectedOptions.length === 0) {
+        const text = placeholderOption.length
+          ? placeholderOption[0].textContent
+          : "&nbsp;";
+        tag.push(`<span class="${classPlaceholder}">${text}</span>`);
+      } else {
+        for (const option2 of selectedOptions) {
+          tag.push(`
+            <div class="${classTag}" data-dselect-value="${option2.value}">
+              ${option2.text}
+              <svg onclick="dselectRemoveTag(this, '${classElement}', '${classToggler}')" class="${classTagRemove}" width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg>
+            </div>
+          `);
+        }
+      }
+      return tag.join("");
+    } else {
+      const selectedOption = options[options.selectedIndex];
+      return isPlaceholder(selectedOption)
+        ? `<span class="${classPlaceholder}">${selectedOption.innerHTML}</span>`
+        : selectedOption.innerHTML;
+    }
+  }
+  function selectedText(options) {
+    const selectedOption = options[options.selectedIndex];
+    return isPlaceholder(selectedOption) ? "" : selectedOption.textContent;
+  }
+  function itemTags(options) {
+    let items = [];
+    for (const option2 of options) {
+      if (option2.tagName === "OPTGROUP") {
+        items.push(
+          `<h6 class="dropdown-header">${option2.getAttribute("label")}</h6>`
+        );
+      } else {
+        const hidden = isPlaceholder(option2) ? " hidden" : "";
+        const active = option2.selected ? " active" : "";
+        const disabled = el.multiple && option2.selected ? " disabled" : "";
+        const value = option2.value;
+        const text = option2.textContent;
+        items.push(
+          `<button${hidden} class="dropdown-item${active}" data-dselect-value="${value}" type="button" onclick="dselectUpdate(this, '${classElement}', '${classToggler}')"${disabled}>${text}</button>`
+        );
+      }
+    }
+    items = items.join("");
+    return items;
+  }
   function createDom() {
     const autoclose = el.multiple ? ' data-bs-auto-close="outside"' : "";
     const additionalClass = Array.from(el.classList)
