@@ -424,7 +424,6 @@ export default {
             headers: {
               "Content-Type": "application/json",
             },
-            credentials: "include",
             body: JSON.stringify({ id_book: id }),
           });
         } else {
